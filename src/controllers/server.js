@@ -156,7 +156,7 @@ const server = {
             } else {
                 customImageUpdate(customImageUpdateMethodConfig.method, customImageUpdateMethodConfig.url, d)
                     .then((data) => {
-                        console.log(data);
+                        // console.log(data);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -186,7 +186,7 @@ const server = {
 
 	        //连接建立时触发
 	        _this.websocket.onopen = function() {
-	        	console.info(locale().websocket.success);
+	        	// console.info(locale().websocket.success);
 	        	hideloading();
 				_this.wxErrorCount = 0;
 
@@ -201,7 +201,7 @@ const server = {
 				Store.result = result
 				let data = new Function("return " + result.data)();
         method.createHookFunction('cooperativeMessage', data)
-				console.info(data);
+				// console.info(data);
 				let type = data.type;
 				let {message,id} = data;
 				// 用户退出时，关闭协同编辑时其提示框
@@ -367,7 +367,7 @@ const server = {
 
 	        //连接关闭时触发
 	        _this.websocket.onclose = function(e){
-				console.info(locale().websocket.close);
+				// console.info(locale().websocket.close);
 				if(e.code === 1000){
 					clearInterval(_this.retryTimer)
 					_this.retryTimer = null

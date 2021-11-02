@@ -518,7 +518,7 @@ const conditionformat = {
                     conditionName = "formula";
 
                     //条件值
-                    let v = $("#luckysheet-newConditionRule-dialog #formulaConditionVal input").val().trim(); 
+                    let v = $("#luckysheet-newConditionRule-dialog #formulaConditionVal input").val().trim();
 
                     if(v == ""){
                         _this.infoDialog("Condition value cannot be empty!", "");
@@ -903,8 +903,8 @@ const conditionformat = {
                     conditionName = "formula";
 
                     //条件值
-                    let v = $("#luckysheet-editorConditionRule-dialog #formulaConditionVal input").val().trim(); 
-                    console.log(v)
+                    let v = $("#luckysheet-editorConditionRule-dialog #formulaConditionVal input").val().trim();
+                    // console.log(v)
                     if(v == ""){
                         _this.infoDialog("Condition value cannot be empty!", "");
                         return;
@@ -1262,10 +1262,10 @@ const conditionformat = {
             $("#" + id).hide();
             //入口
             let source;
-            
+
             if(id == "luckysheet-conditionformat-dialog"){
                 let $id = $(this).siblings("input").attr("id");
-                
+
                 if($id == "conditionVal"){
                     source = "0_1";
                 }

@@ -13,7 +13,7 @@ import numeral from 'numeral';
 
 /**
  * Determine whether a string is in standard JSON format
- * @param {String} str 
+ * @param {String} str
  */
 function isJsonString(str) {
     try {
@@ -29,7 +29,7 @@ function isJsonString(str) {
 /**
  * extend two objects
  * @param {Object } jsonbject1
- * @param {Object } jsonbject2 
+ * @param {Object } jsonbject2
  */
 function common_extend(jsonbject1, jsonbject2) {
     let resultJsonObject = {};
@@ -240,23 +240,23 @@ function chatatABC(n) {
     //     }
     // }
 
-    var orda = 'a'.charCodeAt(0); 
-   
-    var ordz = 'z'.charCodeAt(0); 
-   
-    var len = ordz - orda + 1; 
-   
-    var s = ""; 
-   
-    while( n >= 0 ) { 
-   
-        s = String.fromCharCode(n % len + orda) + s; 
-   
-        n = Math.floor(n / len) - 1; 
-   
-    } 
-   
-    return s.toUpperCase(); 
+    var orda = 'a'.charCodeAt(0);
+
+    var ordz = 'z'.charCodeAt(0);
+
+    var len = ordz - orda + 1;
+
+    var s = "";
+
+    while( n >= 0 ) {
+
+        s = String.fromCharCode(n % len + orda) + s;
+
+        n = Math.floor(n / len) - 1;
+
+    }
+
+    return s.toUpperCase();
 };
 
 function ceateABC(index) {
@@ -415,7 +415,7 @@ function luckysheetfontformat(format) {
         }
 
         if (!format.ff) {
-            
+
             font += fontarray[0] + ', "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif';
         }
         else {
@@ -486,10 +486,10 @@ function luckysheetactiveCell() {
 
 //单元格编辑聚焦
 function luckysheetContainerFocus() {
-    // $("#" + Store.container).focus({ 
-    //     preventScroll: true 
+    // $("#" + Store.container).focus({
+    //     preventScroll: true
     // });
-    
+
     // fix jquery error: Uncaught TypeError: ((n.event.special[g.origType] || {}).handle || g.handler).apply is not a function
 
     $("#" + Store.container).attr("tabindex", 0).focus();
@@ -595,7 +595,7 @@ function $$(selector, context) {
         : Array.prototype.slice.call(elements)
 }
 
-/** 
+/**
  * 串行加载指定的脚本
  * 串行加载[异步]逐个加载，每个加载完成后加载下一个
  * 全部加载完成后执行回调
@@ -767,21 +767,21 @@ function transformRangeToAbsolute(txt1){
         ret += sheetName + rangeRet + ",";
     }
 
-    return ret.substr(0, ret.length-1); 
+    return ret.substr(0, ret.length-1);
 }
 
 function openSelfModel(id, isshowMask=true){
     let $t = $("#"+id)
             .find(".luckysheet-modal-dialog-content")
             .css("min-width", 300)
-            .end(), 
-        myh = $t.outerHeight(), 
+            .end(),
+        myh = $t.outerHeight(),
         myw = $t.outerWidth();
     let winw = $(window).width(), winh = $(window).height();
     let scrollLeft = $(document).scrollLeft(), scrollTop = $(document).scrollTop();
-    $t.css({ 
-    "left": (winw + scrollLeft - myw) / 2, 
-    "top": (winh + scrollTop - myh) / 3 
+    $t.css({
+    "left": (winw + scrollLeft - myw) / 2,
+    "top": (winh + scrollTop - myh) / 3
     }).show();
 
     if(isshowMask){
@@ -791,7 +791,7 @@ function openSelfModel(id, isshowMask=true){
 
 /**
  * 监控对象变更
- * @param {*} data 
+ * @param {*} data
  */
 // const createProxy = (data,list=[]) => {
 //     if (typeof data === 'object' && data.toString() === '[object Object]') {
@@ -808,9 +808,9 @@ function openSelfModel(id, isshowMask=true){
 // }
 
 const createProxy = (data, k, callback) => {
-    if(!data.hasOwnProperty(k)){ 
+    if(!data.hasOwnProperty(k)){
         console.info('No %s in data',k);
-        return; 
+        return;
     };
 
     if (getObjType(data) === 'object') {
@@ -821,12 +821,12 @@ const createProxy = (data, k, callback) => {
         }
     }
 }
-  
+
 function defineObjectReactive(obj, key, value, callback) {
     // 递归
     obj[key] = new Proxy(value, {
       set(target, property, val, receiver) {
-        
+
           setTimeout(() => {
             callback(target, property, val, receiver);
           }, 0);
@@ -835,7 +835,7 @@ function defineObjectReactive(obj, key, value, callback) {
       }
     })
 }
-  
+
 function defineBasicReactive(obj, key, value, callback) {
     Object.defineProperty(obj, key, {
       enumerable: true,
@@ -845,7 +845,7 @@ function defineBasicReactive(obj, key, value, callback) {
       },
       set(newValue) {
         if (value === newValue) return
-        console.log(`发现 ${key} 属性 ${value} -> ${newValue}`)
+        // console.log(`发现 ${key} 属性 ${value} -> ${newValue}`)
 
         setTimeout(() => {
             callback(value,newValue);
@@ -859,7 +859,7 @@ function defineBasicReactive(obj, key, value, callback) {
 
 /**
  * Remove an item in the specified array
- * @param {array} array Target array 
+ * @param {array} array Target array
  * @param {string} item What needs to be removed
  */
 function arrayRemoveItem(array, item) {
@@ -881,7 +881,7 @@ function arrayRemoveItem(array, item) {
         return '-' + group.toLowerCase();
     });
 }
-  
+
 export {
     isJsonString,
     common_extend,

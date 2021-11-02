@@ -9,7 +9,7 @@ import { rowLocation, colLocation, mouseposition } from '../../global/location'
 import { setluckysheet_scroll_status } from '../../methods/set'
 import {
     luckysheetMoveHighlightCell,
-    luckysheetMoveHighlightCell2, 
+    luckysheetMoveHighlightCell2,
     luckysheetMoveHighlightRange,
     luckysheetMoveHighlightRange2,
     luckysheetMoveEndCell
@@ -25,13 +25,13 @@ const dependScripts = [
     'https://unpkg.com/vuex@3.4.0',
     'https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.2/index.js',
     'https://cdn.bootcdn.net/ajax/libs/echarts/4.8.0/echarts.min.js',
-    'expendPlugins/chart/chartmix.umd.min.js',
+    'https://res.jiuqikeji.cn/vendor/luckysheet/v2.1.13/dist/expendPlugins/chart/chartmix.umd.min.js',
     // 'http://26.26.26.1:8000/chartmix.umd.js'
 ]
 
 const dependLinks = [
     'https://cdn.bootcdn.net/ajax/libs/element-ui/2.13.2/theme-chalk/index.css',
-    'expendPlugins/chart/chartmix.css',
+    'https://res.jiuqikeji.cn/vendor/luckysheet/v2.1.13/dist/expendPlugins/chart/chartmix.css',
     // 'http://26.26.26.1:8000/chartmix.css'
 ]
 
@@ -41,7 +41,7 @@ function chart(data, isDemo) {
 
     seriesLoadScripts(dependScripts, null, function () {
         const store = new Vuex.Store()
-        console.info('chartmix::', chartmix.default)
+        // console.info('chartmix::', chartmix.default)
 
         Vue.use(chartmix.default, { store })
         let outDom = document.getElementsByTagName('body')[0]

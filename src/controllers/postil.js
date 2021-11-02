@@ -32,7 +32,7 @@ const luckysheetPostil = {
             if(!checkProtectionAuthorityNormal(Store.currentSheetIndex, "editObjects",false)){
                 return;
             }
-            
+
             _this.currentObj = $(this).find(".luckysheet-postil-show-main");
 
             if($(this).hasClass("luckysheet-postil-show-active")){
@@ -60,14 +60,14 @@ const luckysheetPostil = {
             if(!checkProtectionAuthorityNormal(Store.currentSheetIndex, "editObjects",false)){
                 return;
             }
-            
+
             _this.currentObj = $(this).closest(".luckysheet-postil-show-main");
             _this.currentWinW = $("#luckysheet-cell-main")[0].scrollWidth;
             _this.currentWinH = $("#luckysheet-cell-main")[0].scrollHeight;
 
             _this.resize = $(this).data("type");
 
-            let scrollTop = $("#luckysheet-cell-main").scrollTop(), 
+            let scrollTop = $("#luckysheet-cell-main").scrollTop(),
                 scrollLeft = $("#luckysheet-cell-main").scrollLeft();
             let mouse = mouseposition(event.pageX, event.pageY);
             let x = mouse[0] + scrollLeft;
@@ -78,13 +78,13 @@ const luckysheetPostil = {
             let height = _this.currentObj.height();
 
             _this.resizeXY = [
-                x, 
-                y, 
-                width, 
-                height, 
-                position.left + scrollLeft, 
-                position.top + scrollTop, 
-                scrollLeft, 
+                x,
+                y,
+                width,
+                height,
+                position.left + scrollLeft,
+                position.top + scrollTop,
+                scrollLeft,
                 scrollTop
             ];
 
@@ -110,25 +110,25 @@ const luckysheetPostil = {
             if(!checkProtectionAuthorityNormal(Store.currentSheetIndex, "editObjects",false)){
                 return;
             }
-            
+
             _this.currentObj = $(this).closest(".luckysheet-postil-show-main");
             _this.currentWinW = $("#luckysheet-cell-main")[0].scrollWidth;
             _this.currentWinH = $("#luckysheet-cell-main")[0].scrollHeight;
 
             _this.move = true;
 
-            let scrollTop = $("#luckysheet-cell-main").scrollTop(), 
+            let scrollTop = $("#luckysheet-cell-main").scrollTop(),
                 scrollLeft = $("#luckysheet-cell-main").scrollLeft();
 
             let offset = _this.currentObj.offset();
             let position = _this.currentObj.position();
 
             _this.moveXY = [
-                event.pageX - offset.left, 
-                event.pageY - offset.top, 
-                position.left, 
-                position.top, 
-                scrollLeft, 
+                event.pageX - offset.left,
+                event.pageY - offset.top,
+                position.left,
+                position.top,
+                scrollLeft,
                 scrollTop
             ];
 
@@ -199,15 +199,15 @@ const luckysheetPostil = {
 
         let value = postil["value"] == null ? "" : postil["value"];
 
-        let row = Store.visibledatarow[row_index], 
+        let row = Store.visibledatarow[row_index],
             row_pre = row_index - 1 == -1 ? 0 : Store.visibledatarow[row_index - 1];
-        let col = Store.visibledatacolumn[col_index], 
+        let col = Store.visibledatacolumn[col_index],
             col_pre = col_index - 1 == -1 ? 0 : Store.visibledatacolumn[col_index - 1];
 
         if(!!margeset){
             row = margeset.row[1];
             row_pre = margeset.row[0];
-            
+
             col = margeset.column[1];
             col_pre = margeset.column[0];
         }
@@ -246,13 +246,13 @@ const luckysheetPostil = {
     },
     getArrowCanvasSize: function(fromX, fromY, toX, toY){
         let left = toX - 5;
-        
+
         if(fromX < toX){
             left = fromX - 5;
         }
 
         let top = toY - 5;
-        
+
         if(fromY < toY){
             top = fromY - 5;
         }
@@ -262,7 +262,7 @@ const luckysheetPostil = {
 
         let x1 = width - 5;
         let x2 = 5;
-        
+
         if(fromX < toX){
             x1 = 5;
             x2 = width - 5;
@@ -285,12 +285,12 @@ const luckysheetPostil = {
         color = getObjType(color) == "undefined" ? "#000" : color;
 
         // 计算各角度和对应的P2,P3坐标
-        let angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI, 
-            angle1 = (angle + theta) * Math.PI / 180, 
-            angle2 = (angle - theta) * Math.PI / 180, 
-            topX = headlen * Math.cos(angle1), 
-            topY = headlen * Math.sin(angle1), 
-            botX = headlen * Math.cos(angle2), 
+        let angle = Math.atan2(fromY - toY, fromX - toX) * 180 / Math.PI,
+            angle1 = (angle + theta) * Math.PI / 180,
+            angle2 = (angle - theta) * Math.PI / 180,
+            topX = headlen * Math.cos(angle1),
+            topY = headlen * Math.sin(angle1),
+            botX = headlen * Math.cos(angle2),
             botY = headlen * Math.sin(angle2);
 
         ctx.save();
@@ -299,24 +299,24 @@ const luckysheetPostil = {
         let arrowX = fromX - topX,
             arrowY = fromY - topY;
 
-        ctx.moveTo(arrowX, arrowY); 
-        ctx.moveTo(fromX, fromY); 
-        ctx.lineTo(toX, toY); 
-        
+        ctx.moveTo(arrowX, arrowY);
+        ctx.moveTo(fromX, fromY);
+        ctx.lineTo(toX, toY);
+
         ctx.lineWidth = width;
-        ctx.strokeStyle = color; 
+        ctx.strokeStyle = color;
         ctx.stroke();
 
-        arrowX = toX + topX; 
-        arrowY = toY + topY; 
-        ctx.moveTo(arrowX, arrowY); 
-        ctx.lineTo(toX, toY); 
-        arrowX = toX + botX; 
-        arrowY = toY + botY; 
-        ctx.lineTo(arrowX, arrowY); 
-        
+        arrowX = toX + topX;
+        arrowY = toY + topY;
+        ctx.moveTo(arrowX, arrowY);
+        ctx.lineTo(toX, toY);
+        arrowX = toX + botX;
+        arrowY = toY + botY;
+        ctx.lineTo(arrowX, arrowY);
+
         ctx.fillStyle = color;
-        ctx.fill(); 
+        ctx.fill();
         ctx.restore();
     },
     buildAllPs: function(data){
@@ -348,16 +348,16 @@ const luckysheetPostil = {
         let isshow = postil["isshow"] == null ? false : postil["isshow"];
 
         if(isshow){
-            let row = Store.visibledatarow[r], 
+            let row = Store.visibledatarow[r],
                 row_pre = r - 1 == -1 ? 0 : Store.visibledatarow[r - 1];
-            let col = Store.visibledatacolumn[c], 
+            let col = Store.visibledatacolumn[c],
                 col_pre = c - 1 == -1 ? 0 : Store.visibledatacolumn[c - 1];
 
             let margeset = menuButton.mergeborer(Store.flowdata, r, c);
             if(!!margeset){
                 row = margeset.row[1];
                 row_pre = margeset.row[0];
-                
+
                 col = margeset.column[1];
                 col_pre = margeset.column[0];
             }
@@ -402,7 +402,7 @@ const luckysheetPostil = {
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-mb" data-type="mb"></div>' +
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-rb" data-type="rb"></div>' +
                                 '</div>' +
-                                '<div style="width:100%;height:100%;overflow:hidden;">' + 
+                                '<div style="width:100%;height:100%;overflow:hidden;">' +
                                     '<div class="formulaInputFocus" style="width:'+ (width - 12) +'px;height:'+ (height - 12) +'px;line-height:20px;box-sizing:border-box;text-align: center;;word-break:break-all;" spellcheck="false" contenteditable="true">' +
                                         commentDivs +
                                     '</div>' +
@@ -429,16 +429,16 @@ const luckysheetPostil = {
 
         let _this = this;
 
-        let row = Store.visibledatarow[r], 
+        let row = Store.visibledatarow[r],
             row_pre = r - 1 == -1 ? 0 : Store.visibledatarow[r - 1];
-        let col = Store.visibledatacolumn[c], 
+        let col = Store.visibledatacolumn[c],
             col_pre = c - 1 == -1 ? 0 : Store.visibledatacolumn[c - 1];
 
         let margeset = menuButton.mergeborer(Store.flowdata, r, c);
         if(!!margeset){
             row = margeset.row[1];
             row_pre = margeset.row[0];
-            
+
             col = margeset.column[1];
             col_pre = margeset.column[0];
         }
@@ -477,7 +477,7 @@ const luckysheetPostil = {
                                 '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-mb" data-type="mb"></div>' +
                                 '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-rb" data-type="rb"></div>' +
                             '</div>' +
-                            '<div style="width:100%;height:100%;overflow:hidden;">' + 
+                            '<div style="width:100%;height:100%;overflow:hidden;">' +
                                 '<div class="formulaInputFocus" style="width:132px;height:72px;line-height:20px;box-sizing:border-box;text-align: center;word-break:break-all;" spellcheck="false" contenteditable="true">' +
                                 '</div>' +
                             '</div>' +
@@ -526,16 +526,16 @@ const luckysheetPostil = {
         else{
             let postil = Store.flowdata[r][c].ps;
 
-            let row = Store.visibledatarow[r], 
+            let row = Store.visibledatarow[r],
                 row_pre = r - 1 == -1 ? 0 : Store.visibledatarow[r - 1];
-            let col = Store.visibledatacolumn[c], 
+            let col = Store.visibledatacolumn[c],
                 col_pre = c - 1 == -1 ? 0 : Store.visibledatacolumn[c - 1];
 
             let margeset = menuButton.mergeborer(Store.flowdata, r, c);
             if(!!margeset){
                 row = margeset.row[1];
                 row_pre = margeset.row[0];
-                
+
                 col = margeset.column[1];
                 col_pre = margeset.column[0];
             }
@@ -580,7 +580,7 @@ const luckysheetPostil = {
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-mb" data-type="mb"></div>' +
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-rb" data-type="rb"></div>' +
                                 '</div>' +
-                                '<div style="width:100%;height:100%;overflow:hidden;">' + 
+                                '<div style="width:100%;height:100%;overflow:hidden;">' +
                                     '<div class="formulaInputFocus" style="width:'+ (width - 12) +'px;height:'+ (height - 12) +'px;line-height:20px;box-sizing:border-box;text-align: center;;word-break:break-all;" spellcheck="false" contenteditable="true">' +
                                         commentDivs +
                                     '</div>' +
@@ -644,16 +644,16 @@ const luckysheetPostil = {
         else{
             d[r][c].ps.isshow = true;
 
-            let row = Store.visibledatarow[r], 
+            let row = Store.visibledatarow[r],
                 row_pre = r - 1 == -1 ? 0 : Store.visibledatarow[r - 1];
-            let col = Store.visibledatacolumn[c], 
+            let col = Store.visibledatacolumn[c],
                 col_pre = c - 1 == -1 ? 0 : Store.visibledatacolumn[c - 1];
 
             let margeset = menuButton.mergeborer(Store.flowdata, r, c);
             if(!!margeset){
                 row = margeset.row[1];
                 row_pre = margeset.row[0];
-                
+
                 col = margeset.column[1];
                 col_pre = margeset.column[0];
             }
@@ -706,7 +706,7 @@ const luckysheetPostil = {
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-mb" data-type="mb"></div>' +
                                     '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-rb" data-type="rb"></div>' +
                                 '</div>' +
-                                '<div style="width:100%;height:100%;overflow:hidden;">' + 
+                                '<div style="width:100%;height:100%;overflow:hidden;">' +
                                     '<div class="formulaInputFocus" style="width:'+ (width - 12) +'px;height:'+ (height - 12) +'px;line-height:20px;box-sizing:border-box;text-align: center;;word-break:break-all;" spellcheck="false" contenteditable="true">' +
                                         commentDivs +
                                     '</div>' +
@@ -772,26 +772,26 @@ const luckysheetPostil = {
                     let postil = d[rowIndex][colIndex].ps;
 
                     if(!postil["isshow"]){
-                        let row = Store.visibledatarow[rowIndex], 
+                        let row = Store.visibledatarow[rowIndex],
                             row_pre = rowIndex - 1 == -1 ? 0 : Store.visibledatarow[rowIndex - 1];
-                        let col = Store.visibledatacolumn[colIndex], 
+                        let col = Store.visibledatacolumn[colIndex],
                             col_pre = colIndex - 1 == -1 ? 0 : Store.visibledatacolumn[colIndex - 1];
 
                         let margeset = menuButton.mergeborer(Store.flowdata, rowIndex, colIndex);
                         if(!!margeset){
                             row = margeset.row[1];
                             row_pre = margeset.row[0];
-                            
+
                             col = margeset.column[1];
                             col_pre = margeset.column[0];
                         }
 
                         let scrollLeft = $("#luckysheet-cell-main").scrollLeft();
                         let scrollTop = $("#luckysheet-cell-main").scrollTop();
-            
+
                         let toX = col;
                         let toY = row_pre;
-            
+
                         if(luckysheetFreezen.freezenverticaldata != null && toX < (luckysheetFreezen.freezenverticaldata[0] - luckysheetFreezen.freezenverticaldata[2])){
                             toX += scrollLeft;
                         }
@@ -836,7 +836,7 @@ const luckysheetPostil = {
                                                 '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-mb" data-type="mb"></div>' +
                                                 '<div class="luckysheet-postil-dialog-resize-item luckysheet-postil-dialog-resize-item-rb" data-type="rb"></div>' +
                                             '</div>' +
-                                            '<div style="width:100%;height:100%;overflow:hidden;">' + 
+                                            '<div style="width:100%;height:100%;overflow:hidden;">' +
                                                 '<div class="formulaInputFocus" style="width:'+ (width - 12) +'px;height:'+ (height - 12) +'px;line-height:20px;box-sizing:border-box;text-align: center;;word-break:break-all;" spellcheck="false" contenteditable="true">' +
                                                     commentDivs +
                                                 '</div>' +
@@ -862,7 +862,7 @@ const luckysheetPostil = {
     },
     removeActivePs: function(){
         if($("#luckysheet-postil-showBoxs .luckysheet-postil-show-active").length > 0){
-            
+
 
             let id = $("#luckysheet-postil-showBoxs .luckysheet-postil-show-active").attr("id");
             let r = id.split("luckysheet-postil-show_")[1].split("_")[0];
@@ -902,13 +902,13 @@ const luckysheetPostil = {
     ref: function(data, rc){
         if (Store.clearjfundo) {
             Store.jfundo.length  = 0;
-            
-            Store.jfredo.push({ 
-                "type": "postil", 
-                "data": Store.flowdata, 
-                "curdata": data, 
+
+            Store.jfredo.push({
+                "type": "postil",
+                "data": Store.flowdata,
+                "curdata": data,
                 "sheetIndex": Store.currentSheetIndex,
-                "rc": rc 
+                "rc": rc
             });
         }
 
@@ -928,7 +928,7 @@ const luckysheetPostil = {
                 server.saveParam("v", Store.currentSheetIndex, Store.flowdata[r][c], { "r": r, "c": c });
             }
         }
-        
+
         //刷新表格
         setTimeout(function () {
             luckysheetrefreshgrid();
@@ -944,7 +944,7 @@ const luckysheetPostil = {
             let c = id.split("luckysheet-postil-show_")[1].split("_")[1];
 
             let cell = Store.flowdata[r][c];
-            
+
             if(cell != null && cell.ps != null){
                 _this.buildPs(r, c, cell.ps);
             }
@@ -955,7 +955,7 @@ const luckysheetPostil = {
     },
     htmlEscape: function(text){
         return text.replace(/[<>"&]/g, function(match, pos, originalText){
-            console.log(match, pos, originalText)
+            // console.log(match, pos, originalText)
             switch(match){
                 case '<': {
                     return '&lt';
