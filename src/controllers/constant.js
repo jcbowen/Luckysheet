@@ -842,7 +842,7 @@ function customLoadingConfig() {
     const info = _locale.info;
     const config = {
         enable: true,
-        image: 'image://res.jiuqikeji.cn/vendor/luckysheet/v2.1.13/dist/css/loading.gif',
+        image: 'image:https://res.jiuqikeji.cn/vendor/luckysheet/v2.1.13/dist/css/loading.gif',
         text: info.loading,
         viewBox: "32 32 64 64", // 只有为path时，才会使用
         imageClass: '',
